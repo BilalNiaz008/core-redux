@@ -1,8 +1,5 @@
 import {createStore,bindActionCreators,combineReducers} from "redux";
 
-
-
-
 const CAKE_ORDERED = 'CAKE_ORDERED';
 const CAKE_RESTOCKED = 'CAKE_RESTOCKED';
 const ICECREAM_ORDERED = 'ICECREAM_ORDERED';
@@ -34,18 +31,19 @@ function restockIceCream(qty = 1) {
         payload: qty
     }
 }
-
+// how we define state combine
 /*const initialState = {
     numOfCakes: 10,
     numOfIceCreams: 20
 }*/
+// how we define state one by one
 const initialStateForCake = {
     numOfCakes: 10
 }
 const initialStateForIceCream = {
     numOfIceCreams: 20
 }
-
+// how we define reducer one by one we can combine them later
 const cakeReducer = (state = initialStateForCake, action) =>{
     switch (action.type) {
         case CAKE_ORDERED:
@@ -78,6 +76,7 @@ const iceCreamReducer = (state = initialStateForIceCream, action) => {
             return state
     }
 }
+// how we define reducer combine
 const rootReducer = combineReducers({
     cake: cakeReducer,
     iceCream: iceCreamReducer
